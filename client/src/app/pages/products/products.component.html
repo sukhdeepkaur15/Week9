@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="card">
+    <div class="toolbar">
+      <h2>Products</h2>
+      <button class="btn btn-primary" (click)="toAdd()">Add Product</button>
+    </div>
+
+    <div *ngIf="loading" class="badge">Loading…</div>
+    <div *ngIf="error" class="badge" style="border-color:#fbbf24;color:#92400e;">{{error}}</div>
+
+    <div *ngIf="!products?.length && !loading" class="empty">
+      No products yet — click <strong>Add Product</strong> to create your first item.
+    </div>
+
+    <div class="table-wrap" *ngIf="products?.length">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th style="min-width:160px">Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Units</th>
+            <th style="width:140px">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of products">
+            <td>{{ p.id }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.description }}</td>
+            <td>{{ p.price | currency:'AUD':'symbol':'1.2-2' }}</td>
+            <td>{{ p.units }}</td>
+            <td>
+              <button class="btn btn-ghost" (click)="toEdit(p)">Edit</button>
+              <button class="btn btn-danger" (click)="remove(p)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

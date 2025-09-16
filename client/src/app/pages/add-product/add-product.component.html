@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="card" style="max-width:720px; margin:auto;">
+    <h2 style="margin:0 0 1rem;">{{title || 'Add Product'}}</h2>
+
+    <form [formGroup]="form" (ngSubmit)="save()" class="form">
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: .8rem;">
+        <label> id <input class="input" type="number" formControlName="id"> </label>
+        <label> Name <input class="input" type="text" formControlName="name"> </label>
+        <label style="grid-column: 1 / -1;"> Description
+          <input class="input" type="text" formControlName="description">
+        </label>
+        <label> Price <input class="input" type="number" step="0.01" formControlName="price"> </label>
+        <label> Units <input class="input" type="number" formControlName="units"> </label>
+      </div>
+
+      <div style="display:flex; gap:.5rem; margin-top:1rem;">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a class="btn btn-ghost" [routerLink]="['/products']">Cancel</a>
+      </div>
+
+      <div class="badge" *ngIf="error" style="border-color:#fbbf24;color:#92400e;margin-top:.8rem;">
+        {{error}}
+      </div>
+    </form>
+  </div>
+</div>
